@@ -50,7 +50,7 @@ public class ArticleApiController {
 
 
 
-    @PostMapping("api/articles/{id}")
+    @DeleteMapping("api/articles/{id}")
     public ResponseEntity<Article> delete(@PathVariable Long id){
         Article target=articleRepository.findById(id).orElse(null);
         if(target==null || id!= target.getId()){
