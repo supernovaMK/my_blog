@@ -3,13 +3,14 @@ package com.example.firstproject.service;
 import com.example.firstproject.dto.ArticleForm;
 import com.example.firstproject.entity.Article;
 import com.example.firstproject.repository.ArticleRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
+@Slf4j
 @Service
 public class ArticleService {
     @Autowired
@@ -18,6 +19,7 @@ public class ArticleService {
 
     public List<Article> index() {
         return articleRepository.findAll();
+
     }
 
     public Article show(Long id) {
@@ -26,8 +28,9 @@ public class ArticleService {
 
     public Article create(ArticleForm form) {
         Article created=form.toEntity();
-        if(created.getId()!=null)
+        if(created.getId()!=null){
             return null;
+        }
         return articleRepository.save(created);
     }
 
